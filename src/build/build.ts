@@ -26,7 +26,7 @@ import {waitFor, pipeStreams} from './streams';
 import {loadServiceWorkerConfig} from './load-config';
 
 const logger = logging.getLogger('cli.build.build');
-export const mainBuildDirectoryName = 'build';
+export const mainBuildDirectoryName = path.join('build', 'polymer-cli');
 
 
 /**
@@ -43,7 +43,7 @@ export async function build(
 
   // If no name is provided, write directly to the build/ directory.
   // If a build name is provided, write to that subdirectory.
-  const buildDirectory = path.join(mainBuildDirectoryName, buildName);
+  const buildDirectory = path.join(mainBuildDirectoryName);
   logger.debug(`"${buildDirectory}": Building with options:`, options);
 
   // Fork the two streams to guarentee we are working with clean copies of each
